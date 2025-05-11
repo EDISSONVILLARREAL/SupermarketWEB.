@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SupermarketWEB.Data;
+using SupermarketWEB.Models;
 using System.Xml.Linq;
 
-namespace SupermarketWEB.Pages.Categories
+namespace SupermarketWEB.Pages.Products
 {
     public class CreateModel : PageModel
 {
@@ -20,16 +21,16 @@ namespace SupermarketWEB.Pages.Categories
     }
 
     [BindProperty]
-    public Category Category { get; set; } = default!;
+        public Product Product { get; set; } = default!;
 
-    public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid || _context.Categories == null || Category == null)
+        if (!ModelState.IsValid || _context.Products == null || Product == null)
         {
             return Page();
         }
 
-        _context.Categories.Add(Category);
+        _context.Products.Add(Product);
         await _context.SaveChangesAsync();
 
         return RedirectToPage("./Index");

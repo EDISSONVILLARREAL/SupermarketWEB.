@@ -7,7 +7,7 @@ using SupermarketWEB.Data;
 
 #nullable disable
 
-namespace SupermarketWEB.Migrations
+namespace SupermarketWEB.Data.Migrations
 {
     [DbContext(typeof(SupermarketContext))]
     partial class SupermarketContextModelSnapshot : ModelSnapshot
@@ -59,6 +59,9 @@ namespace SupermarketWEB.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(6,2)");
 
+                    b.Property<int?>("ProviderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
@@ -66,7 +69,42 @@ namespace SupermarketWEB.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("ProviderId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("SupermarketWEB.Models.Provider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Providers");
                 });
 
             modelBuilder.Entity("SupermarketWEB.Models.Product", b =>
@@ -77,10 +115,19 @@ namespace SupermarketWEB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SupermarketWEB.Models.Provider", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ProviderId");
+
                     b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("SupermarketWEB.Models.Provider", b =>
                 {
                     b.Navigation("Products");
                 });

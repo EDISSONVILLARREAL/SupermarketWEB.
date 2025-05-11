@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Models;
-using SupermarketWEB.Models.SupermarketWEB.Models;
+
 
 namespace SupermarketWEB.Data
 {

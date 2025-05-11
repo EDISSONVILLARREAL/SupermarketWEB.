@@ -8,10 +8,10 @@ using SupermarketWEB.Data;
 
 #nullable disable
 
-namespace SupermarketWEB.Data.Migrations
+namespace SupermarketWEB.Migrations
 {
     [DbContext(typeof(SupermarketContext))]
-    [Migration("20250511051400_PayMode")]
+    [Migration("20250511080517_PayMode")]
     partial class PayMode
     {
         /// <inheritdoc />
@@ -42,6 +42,26 @@ namespace SupermarketWEB.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("SupermarketWEB.Models.PayMode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PayModes");
                 });
 
             modelBuilder.Entity("SupermarketWEB.Models.Product", b =>
@@ -108,28 +128,6 @@ namespace SupermarketWEB.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Providers");
-                });
-
-            modelBuilder.Entity("SupermarketWEB.Models.SupermarketWEB.Models.PayMode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Efectivo")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Tarjeta")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Transferencia")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PayModes");
                 });
 
             modelBuilder.Entity("SupermarketWEB.Models.Product", b =>

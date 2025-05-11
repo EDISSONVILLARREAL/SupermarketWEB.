@@ -4,7 +4,7 @@ using SupermarketWEB.Data;
 using SupermarketWEB.Models;
 using System.Xml.Linq;
 
-namespace SupermarketWEB.Pages.Products
+namespace SupermarketWEB.Pages.Providers
 {
     public class CreateModel : PageModel
 {
@@ -21,16 +21,16 @@ namespace SupermarketWEB.Pages.Products
     }
 
     [BindProperty]
-        public Product Product { get; set; } = default!;
+        public Provider Provider { get; set; } = default!;
 
         public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid || _context.Products == null || Product == null)
+        if (!ModelState.IsValid || _context.Providers == null || Provider == null)
         {
             return Page();
         }
 
-        _context.Products.Add(Product);
+        _context.Providers.Add(Provider);
         await _context.SaveChangesAsync();
 
         return RedirectToPage("./Index");

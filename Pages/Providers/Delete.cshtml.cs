@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 using SupermarketWEB.Models;
 
-namespace SupermarketWEB.Pages.Products
+namespace SupermarketWEB.Pages.Providers
 {
     public class DeleteModel : PageModel
     {
@@ -16,24 +16,24 @@ namespace SupermarketWEB.Pages.Products
         }
 
         [BindProperty]
-        public Product Product { get; set; } = default;
+        public Provider Provider { get; set; } = default;
 
         public async Task<ActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.Providers == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
+            var provider = await _context.Providers.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (product == null)
+            if (provider == null)
             {
                 return NotFound();
             }
             else
             {
-                Product = product;
+                Provider = provider;
             }
             return Page();
         }
@@ -41,16 +41,16 @@ namespace SupermarketWEB.Pages.Products
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.Providers == null)
             {
                 return NotFound();
             }
-            var product = await _context.Products.FindAsync(id);
+            var provider = await _context.Providers.FindAsync(id);
 
-            if (product != null)
+            if (provider != null)
             {
-                Product = product;
-                _context.Products.Remove(Product);
+                Provider = provider;
+                _context.Providers.Remove(Provider);
                 await _context.SaveChangesAsync();
             }
             return RedirectToPage("./Index");

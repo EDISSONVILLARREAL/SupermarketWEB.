@@ -20,3 +20,39 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* --- Botones del menú de navegación personalizados --- */
+.nav-home {
+    background-color: #007bff;
+    color: white !important;
+}
+
+.nav-categories {
+    background-color: #6c757d;
+    color: white !important;
+}
+
+.nav-products {
+    background-color: #28a745;
+    color: white !important;
+}
+
+.nav-providers {
+    background-color: #dc3545;
+    color: white !important;
+}
+
+.nav-paymodes {
+    background-color: #ffc107;
+    color: black !important;
+}
+
+.navbar-nav .nav-item a {
+    margin-right: 8px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+    .navbar-nav .nav-item a:hover {
+        opacity: 0.85;
+    }

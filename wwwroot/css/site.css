@@ -1,58 +1,22 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
-/* --- Botones del menú de navegación personalizados --- */
-.nav-home {
-    background-color: #007bff;
-    color: white !important;
-}
-
-.nav-categories {
-    background-color: #6c757d;
-    color: white !important;
-}
-
-.nav-products {
-    background-color: #28a745;
-    color: white !important;
-}
-
-.nav-providers {
-    background-color: #dc3545;
-    color: white !important;
-}
-
-.nav-paymodes {
-    background-color: #ffc107;
-    color: black !important;
-}
-
-.navbar-nav .nav-item a {
-    margin-right: 8px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-}
-
-    .navbar-nav .nav-item a:hover {
-        opacity: 0.85;
-    }

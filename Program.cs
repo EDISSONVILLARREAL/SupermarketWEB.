@@ -9,6 +9,12 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddRazorPages();
+        builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+        {
+            options.Cookie.Name = "MyCookieAuth";
+            options.LoginPath = "/Account/Login"; // Si no está autenticado, cargue la página login
+        });
+    
 
         // Agregando el contexto SupermarketContext a la aplicación
         builder.Services.AddDbContext<SupermarketContext>(options =>

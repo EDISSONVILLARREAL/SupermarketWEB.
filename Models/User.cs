@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
 
 namespace SupermarketWEB.Models
 {
+    [Authorize]
     public class User
     {
         [Required] //verificar que se importó using System.ComponentModel.DataAnnotations;

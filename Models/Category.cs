@@ -1,5 +1,7 @@
-﻿using SupermarketWEB.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using SupermarketWEB.Models;
 
+[Authorize]
 public class Category
 {
     public int Id { get; set; } // Será la llave primaria

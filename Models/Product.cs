@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupermarketWEB.Models
 {
+    [Authorize]
     public class Product
     {
         // [key] -> Anotación si la propiedad no se llama Id, ejemplo ProductId

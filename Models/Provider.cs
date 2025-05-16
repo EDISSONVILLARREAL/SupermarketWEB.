@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupermarketWEB.Models
 {
+    [Authorize]
     public class Provider
     {
         [Key] // Asegúrate de tener este atributo

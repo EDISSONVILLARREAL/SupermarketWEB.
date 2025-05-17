@@ -1,0 +1,43 @@
+﻿@page
+@model SupermarketWEB.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<h2>Registro de Usuario</h2>
+
+<form method="post" class="mt-4">
+    <div class="mb-3">
+        <label asp-for="Registro.Name" class="form-label"></label>
+        <input asp-for="Registro.Name" class="form-control" />
+        <span asp-validation-for="Registro.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Registro.Email" class="form-label"></label>
+        <input asp-for="Registro.Email" class="form-control" />
+        <span asp-validation-for="Registro.Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Registro.Password" class="form-label"></label>
+        <input asp-for="Registro.Password" type="password" class="form-control" />
+        <span asp-validation-for="Registro.Password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Registro.ConfirmPassword" class="form-label"></label>
+        <input asp-for="Registro.ConfirmPassword" type="password" class="form-control" />
+        <span asp-validation-for="Registro.ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="text-danger">
+        @Html.ValidationSummary(false)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

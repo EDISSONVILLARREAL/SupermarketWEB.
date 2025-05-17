@@ -1,12 +1,15 @@
-﻿@if (User.Identity.IsAuthenticated)
+﻿@* Pages/Shared/_LoginStatusPartial.cshtml *@
+@if (User.Identity?.IsAuthenticated ?? false)
 {
-    <form method="post" class="form-inline" asp-page="/Account/Logout">
-        Welcome @User.Identity.Name
-        <button type="submit" class="ml-2 btn btn-link">Logout</button>
+    <form method="post" class="form-inline d-flex align-items-center gap-2" asp-page="/Account/Logout">
+        <span class="text-dark">Welcome @User.Identity.Name</span>
+        <button type="submit" class="btn btn-link">Logout</button>
     </form>
 }
 else
 {
-    <a class="btn btn-link" asp-page="/Account/Login">Login</a>
-    <a class="btn btn-link" asp-page="/Account/Register">Register</a>
+    <div class="d-flex gap-2">
+        <a class="btn btn-link" asp-page="/Account/Login">Login</a>
+        <a class="btn btn-link" asp-page="/Account/Register">Register</a>
+    </div>
 }

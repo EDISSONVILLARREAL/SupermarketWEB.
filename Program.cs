@@ -36,6 +36,9 @@ public class Program
 
         app.UseRouting();
 
+        app.UseAuthentication();  // 👈 Necesario para que funcione la autenticación
+
+
         app.UseAuthorization();
 
         app.MapRazorPages();

@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using SupermarketWEB.Data;
 using SupermarketWEB.Models;
 using System.Security.Claims;
 
@@ -8,38 +11,50 @@ namespace SupermarketWEB.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly SupermarketContext _context;
+
+        public LoginModel(SupermarketContext context)
+        {
+            _context = context;
+        }
+
         [BindProperty]
-        public User User { get; set; }
+        public User User { get; set; } = new User(); // Asegura que no sea null
 
         public void OnGet()
         {
         }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+                return Page();
 
-            if (User.Email == "correo@gmail.com" && User.Password == "12345")
+            // Verifica credenciales contra la base de datos
+            var usuario = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == User.Email && u.Password == User.Password);
+
+            if (usuario == null)
             {
-                // Se crea la lista de Claims, datos a almacenar en la Cookie
-                var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, "admin"),
-                new Claim(ClaimTypes.Email, User.Email)
-            };
-
-                // Se asocia los claims creados a un nombre de una Cookie
-                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
-
-                // Se agrega la identidad creada al ClaimsPrincipal de la aplicación
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
-
-                // Se registra exitosamente la autenticación y se crea la cookie en el navegador
-                await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
-
-                return RedirectToPage("/Index");
+                ModelState.AddModelError(string.Empty, "Correo o contraseña incorrectos.");
+                return Page();
             }
 
-            return Page();
+            // Crear los claims de identidad
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, usuario.Name),
+                new Claim(ClaimTypes.Email, usuario.Email),
+                new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            // Iniciar sesión
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            return RedirectToPage("/Index");
         }
     }
 }

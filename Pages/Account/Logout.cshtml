@@ -1,4 +1,11 @@
 ﻿@page
 @model SupermarketWEB.Pages.Account.LogoutModel
 @{
+    ViewData["Title"] = "Cerrar sesión";
 }
+
+<h2>¿Deseas cerrar sesión?</h2>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+</form>

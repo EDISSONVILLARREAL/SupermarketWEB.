@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SupermarketWEB.Models
+public class User
 {
-    [Authorize]
-    public class User
-    {
-        [Required] //verificar que se importó using System.ComponentModel.DataAnnotations;
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+    [Key] // Esto define que Id es la clave primaria
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Auto-incremental
+    public int Id { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-    }
+    [Required]
+    public string Name { get; set; }
+
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
+
+    [Required]
+    public string Password { get; set; }
 }

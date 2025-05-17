@@ -11,8 +11,8 @@ using SupermarketWEB.Data;
 namespace SupermarketWEB.Migrations
 {
     [DbContext(typeof(SupermarketContext))]
-    [Migration("20250511080209_InitialCreat")]
-    partial class InitialCreat
+    [Migration("20250517085322_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,6 +128,31 @@ namespace SupermarketWEB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Providers");
+                });
+
+            modelBuilder.Entity("User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("SupermarketWEB.Models.Product", b =>

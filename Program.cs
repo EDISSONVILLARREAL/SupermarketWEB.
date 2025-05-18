@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using SupermarketWEB.Data;
 
 public class Program
@@ -9,12 +10,14 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddRazorPages();
-        builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
-        {
-            options.Cookie.Name = "MyCookieAuth";
-            options.LoginPath = "/Account/Login"; // Si no está autenticado, cargue la página login
-        });
-    
+
+        // ✅ Configuración de autenticación usando el esquema "Cookies"
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+     {
+         options.Cookie.Name = "MyCookieAuth"; // El nombre de la COOKIE es personalizable
+         options.LoginPath = "/Account/Login";
+     });
 
         // Agregando el contexto SupermarketContext a la aplicación
         builder.Services.AddDbContext<SupermarketContext>(options =>
@@ -27,7 +30,6 @@ public class Program
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
 
@@ -36,9 +38,7 @@ public class Program
 
         app.UseRouting();
 
-        app.UseAuthentication();  // 👈 Necesario para que funcione la autenticación
-
-
+        app.UseAuthentication();  // 👈 Necesario para la autenticación
         app.UseAuthorization();
 
         app.MapRazorPages();

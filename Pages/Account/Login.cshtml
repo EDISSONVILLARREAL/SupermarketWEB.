@@ -14,6 +14,7 @@
         <label asp-for="User.Email" class="form-label"></label>
         <input asp-for="User.Email" class="form-control" />
         <span class="text-danger" asp-validation-for="User.Email"></span>
+        <input type="hidden" asp-for="User.Name" />
     </div>
 
     <div class="mb-3">

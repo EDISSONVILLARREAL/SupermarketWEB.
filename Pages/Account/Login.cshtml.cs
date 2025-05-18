@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,7 @@ namespace SupermarketWEB.Pages.Account
         }
 
         [BindProperty]
-        public User User { get; set; } = new User(); // Asegura que no sea null
+        public User User { get; set; } = new User();
 
         public void OnGet()
         {
@@ -30,7 +29,6 @@ namespace SupermarketWEB.Pages.Account
             if (!ModelState.IsValid)
                 return Page();
 
-            // Verifica credenciales contra la base de datos
             var usuario = await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == User.Email && u.Password == User.Password);
 
@@ -40,7 +38,6 @@ namespace SupermarketWEB.Pages.Account
                 return Page();
             }
 
-            // Crear los claims de identidad
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, usuario.Name),
@@ -48,11 +45,10 @@ namespace SupermarketWEB.Pages.Account
                 new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
             };
 
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var identity = new ClaimsIdentity(claims, "MyCookieAuth"); // 👈 Aquí usamos el nombre exacto
             var principal = new ClaimsPrincipal(identity);
 
-            // Iniciar sesión
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            await HttpContext.SignInAsync("MyCookieAuth", principal); // 👈 Coincide con Program.cs
 
             return RedirectToPage("/Index");
         }

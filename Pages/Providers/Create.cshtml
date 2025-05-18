@@ -1,49 +1,68 @@
 ﻿@page
 @model SupermarketWEB.Pages.Providers.CreateModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Nuevo Proveedor";
 }
 
-<h1>Create</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header text-white" style="background-color: #0d6efd;">
+                    <h3 class="mb-0">
+                        <i class="fas fa-truck me-2"></i>@ViewData["Title"]
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4"></div>
 
-<h4>Provider</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="Provider.Name" class="control-label"></label>
-                <input asp-for="Provider.Name" class="form-control" />
-                <span asp-validation-for="Provider.Name" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Provider.Name" class="form-label fw-bold">Nombre del Proveedor</label>
+                                <input asp-for="Provider.Name" class="form-control form-control-lg" placeholder="Ingrese el nombre del proveedor" />
+                                <span asp-validation-for="Provider.Name" class="text-danger small mt-1"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Provider.ContactEmail" class="form-label fw-bold">Email de Contacto</label>
+                                <input asp-for="Provider.ContactEmail" class="form-control form-control-lg" placeholder="Ingrese el email de contacto" />
+                                <span asp-validation-for="Provider.ContactEmail" class="text-danger small mt-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Provider.ContactPhone" class="form-label fw-bold">Teléfono de Contacto</label>
+                                <input asp-for="Provider.ContactPhone" class="form-control form-control-lg" placeholder="Ingrese el teléfono de contacto" />
+                                <span asp-validation-for="Provider.ContactPhone" class="text-danger small mt-1"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Provider.Address" class="form-label fw-bold">Dirección</label>
+                                <input asp-for="Provider.Address" class="form-control form-control-lg" placeholder="Ingrese la dirección" />
+                                <span asp-validation-for="Provider.Address" class="text-danger small mt-1"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Provider.Description" class="form-label fw-bold">Descripción</label>
+                            <textarea asp-for="Provider.Description" class="form-control form-control-lg" rows="3" placeholder="Ingrese una descripción (opcional)"></textarea>
+                            <span asp-validation-for="Provider.Description" class="text-danger small mt-1"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-page="Index" class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left me-1"></i> Volver al Listado
+                            </a>
+                            <button type="submit" class="btn text-white" style="background-color: #0d6efd;">
+                                <i class="fas fa-save me-1"></i> Crear Proveedor
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Provider.Description" class="control-label"></label>
-                <input asp-for="Provider.Description" class="form-control" />
-                <span asp-validation-for="Provider.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Provider.ContactEmail" class="control-label"></label>
-                <input asp-for="Provider.ContactEmail" class="form-control" />
-                <span asp-validation-for="Provider.ContactEmail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Provider.ContactPhone" class="control-label"></label>
-                <input asp-for="Provider.ContactPhone" class="form-control" />
-                <span asp-validation-for="Provider.ContactPhone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Provider.Address" class="control-label"></label>
-                <input asp-for="Provider.Address" class="form-control" />
-                <span asp-validation-for="Provider.Address" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group mt-3">
-                <input type="submit" value="Create" class="btn btn-success" />
-                <a asp-page="Index" class="btn btn-primary">Back to List</a>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

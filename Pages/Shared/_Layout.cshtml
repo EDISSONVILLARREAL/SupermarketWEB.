@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SupermarketWEB</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Añade Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SupermarketWEB.styles.css" asp-append-version="true" />
 </head>
@@ -19,32 +21,31 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                       <li class="nav-item">
-    
- <li class="nav-item">
-     <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
- </li>
- <li class="nav-item">
-     <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a>
- </li>
- <li class="nav-item">
-     <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">Products</a>
- </li>
- <li class="nav-item">
-     <a class="nav-link text-dark" asp-area="" asp-page="/Providers/Index">Providers</a>
- </li>
- <li class="nav-item">
-     <a class="nav-link text-dark" asp-area="" asp-page="/PayMode/Index">PayModes</a>
-</li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Student/student">Student</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Teacher/teacher">Teacher</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Subject/subject">Subject</a>
-        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="" asp-page="/Index">
+                                <i class="fas fa-home me-1 text-primary"></i>Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Categories/Index">
+                                <i class="fas fa-tags me-1 text-primary"></i>Categorías
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Products/Index">
+                                <i class="fas fa-box me-1 text-primary"></i>Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Providers/Index">
+                                <i class="fas fa-truck me-1 text-primary"></i>Proveedores
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/PayMode/Index">
+                                <i class="fas fa-credit-card me-1 text-primary"></i>Métodos de Pago
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="mr-2">

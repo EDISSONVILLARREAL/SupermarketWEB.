@@ -50,7 +50,8 @@ namespace SupermarketWEB.Pages.Account
             var principal = new ClaimsPrincipal(identity);
 
             // ✅ Aquí usamos el esquema correcto registrado: "Cookies"
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            await HttpContext.SignInAsync("MyCookieAuth", principal);
+
 
             return RedirectToPage("/Index");
         }

@@ -12,12 +12,12 @@ public class Program
         builder.Services.AddRazorPages();
 
         // ✅ Configuración de autenticación usando el esquema "Cookies"
-        builder.Services.AddAuthentication("MyCookieAuth")
-    .AddCookie("MyCookieAuth", options =>
-    {
-        options.Cookie.Name = "MyCookieAuth";
-        options.LoginPath = "/Account/Login";
-    });
+        builder.Services.AddAuthentication()
+     .AddCookie("MyCookieAuth", options =>
+     {
+         options.Cookie.Name = "MyCookieAuth";
+         options.LoginPath = "/Account/Login"; // Si no está autenticado, cargue la página login
+     });
 
 
         // Agregando el contexto SupermarketContext a la aplicación

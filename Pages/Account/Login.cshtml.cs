@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -45,10 +46,11 @@ namespace SupermarketWEB.Pages.Account
                 new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
             };
 
-            var identity = new ClaimsIdentity(claims, "MyCookieAuth"); // 👈 Aquí usamos el nombre exacto
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
 
-            await HttpContext.SignInAsync("MyCookieAuth", principal); // 👈 Coincide con Program.cs
+            // ✅ Aquí usamos el esquema correcto registrado: "Cookies"
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
             return RedirectToPage("/Index");
         }

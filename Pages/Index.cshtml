@@ -1,10 +1,64 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">EDISSON FERNEY VILLARREAL</h1>
-    <p>Link del´Repositorio <a href="">https://github.com/EDISSONVILLARREAL/SupermarketWEB..git</a>.</p>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <div class="card border-0 shadow-lg p-4 mb-5 bg-white rounded">
+                <div class="card-body">
+
+                    <h1 class="display-4 text-primary fw-bold mb-3">Edisson Ferney Villarreal
+                        S4AN
+                    </h1>
+                    <p class="lead text-muted mb-4">Lenguaje Informatico</p>
+
+                    <div class="d-flex justify-content-center gap-3 mb-4">
+                        <a href="https://github.com/EDISSONVILLARREAL" class="btn btn-outline-dark btn-lg" target="_blank">
+                            <i class="fab fa-github me-2"></i>GitHub
+                        </a>
+                        <a href="https://github.com/EDISSONVILLARREAL/SupermarketWEB" class="btn btn-primary btn-lg" target="_blank">
+                            <i class="fas fa-code-branch me-2"></i>Repositorio
+                        </a>
+                    </div>
+
+                    <div class="card bg-light p-3 mb-4">
+                        <h5 class="card-title text-start"><i class="fas fa-link me-2"></i>Enlace directo al repositorio:</h5>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="https://github.com/EDISSONVILLARREAL/SupermarketWEB" id="repoLink" readonly>
+                            <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Práctica de Razor Page, Autenticación  y Autorización
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function copyToClipboard() {
+            const copyText = document.getElementById("repoLink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+
+            const button = event.target.closest('button');
+            const originalIcon = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+
+            setTimeout(() => {
+                button.innerHTML = originalIcon;
+            }, 2000);
+        }
+    </script>
+}
